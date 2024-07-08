@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace IMovies.API.Controllers
 {
@@ -6,6 +7,7 @@ namespace IMovies.API.Controllers
     [Route("api/[controller]")]
     public class AccessController : ControllerBase
     {
+        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {

@@ -14,6 +14,7 @@ using IMovies.API.Repositories;
 using IMovies.API.Repositories.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 internal class Program
 {
@@ -26,7 +27,39 @@ internal class Program
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+
+        builder.Services.AddSwaggerGen(opt =>
+        {
+            opt.SwaggerDoc("v1", new OpenApiInfo()
+            {
+                Title = "Mevam API",
+                Version = "v1"
+            });
+
+            opt.AddSecurityDefinition(name: "Bearer", new OpenApiSecurityScheme()
+            {
+                Name = "Authorization",
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                In = ParameterLocation.Header
+            });
+
+            opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new List<string>{}
+        }
+    });
+        });
 
         var app = builder.Build();
         if (app.Environment.IsDevelopment())
@@ -57,9 +90,9 @@ internal class Program
     [Obsolete]
     private static void ConfigurationApplicationServices(WebApplicationBuilder builder)
     {
-        builder.Services.AddScoped<IValidator<AuthenticationDto>, AuthenticationValidator>();
         builder.Services.AddScoped<IValidator<CreateOrUpdateMovieDto>, MovieValidator>();
-        builder.Services.AddScoped<IValidator<RegisterUserDto>, UserValidator>();
+        builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterValidator>();
+        builder.Services.AddScoped<IValidator<AuthenticationDto>, LoginValidator>();
 
         builder.Services.AddDbContext<ApplicationContext>(options =>
                        options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionApplication")));

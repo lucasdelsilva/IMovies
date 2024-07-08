@@ -28,7 +28,7 @@ namespace IMovies.API.Repositories
             return false;
         }
 
-        public async Task<MovieResponseDto> Get(int id)
+        public async Task<MovieResponseDto> Get(Guid id)
         {
             var movie = await _dbContext.Movies.Where(x => x.Id.Equals(id)).FirstOrDefaultAsync();
             var moviesMap = movie.Adapt<MovieResponseDto>();
@@ -50,7 +50,7 @@ namespace IMovies.API.Repositories
             return null;
         }
 
-        public async Task<bool> Put(int id, CreateOrUpdateMovieDto movie)
+        public async Task<bool> Put(Guid id, CreateOrUpdateMovieDto movie)
         {
             var movieId = await _dbContext.Movies.Where(x => x.Id.Equals(id)).AsNoTracking().FirstOrDefaultAsync();
             if (movieId is null)
@@ -68,7 +68,7 @@ namespace IMovies.API.Repositories
             return false;
         }
 
-        public async Task<bool> Remove(int id)
+        public async Task<bool> Remove(Guid id)
         {
             var movie = await _dbContext.Movies.Where(x => x.Id.Equals(id)).AsNoTracking().FirstOrDefaultAsync();
             if (movie is not null)

@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace IMovies.API.DTOs.User
 {
@@ -14,7 +13,6 @@ namespace IMovies.API.DTOs.User
             ErrorMessage = "A senha deve ter entre 6 e 20 caracteres e conter ao menos uma letra maiúscula, uma letra minúscula, um dígito e um caractere especial.")]
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
-        [DefaultValue("dd/mm/yyyy")]
         public DateTime Birthday { get; set; }
     }
 }

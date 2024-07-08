@@ -17,14 +17,16 @@ namespace IMovies.API.Domain.Services
             return _repository.Add(movieDto);
         }
 
-        public Task<bool> PutAsync(int id, CreateOrUpdateMovieDto movieDto)
+        public Task<bool> PutAsync(string id, CreateOrUpdateMovieDto movieDto)
         {
-            return _repository.Put(id, movieDto);
+            Guid.TryParse(id, out var guidId);
+            return _repository.Put(guidId, movieDto);
         }
 
-        public Task<bool> RemoveAsync(int id)
+        public Task<bool> RemoveAsync(string id)
         {
-            return _repository.Remove(id);
+            Guid.TryParse(id, out var guidId);
+            return _repository.Remove(guidId);
         }
 
         public Task<List<MovieResponseDto>> GetAllAsync()
@@ -32,9 +34,10 @@ namespace IMovies.API.Domain.Services
             return _repository.GetAll();
         }
 
-        public Task<MovieResponseDto> GetAsync(int id)
+        public Task<MovieResponseDto> GetAsync(string id)
         {
-            return _repository.Get(id);
+            Guid.TryParse(id, out var guidId);
+            return _repository.Get(guidId);
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using FluentValidation;
+using IMovies.API.DTOs;
 using IMovies.API.DTOs.User;
 
 namespace IMovies.API.Helper.Validations
 {
-    public class UserValidator : AbstractValidator<RegisterUserDto>
+    public class RegisterValidator : AbstractValidator<RegisterUserDto>
     {
-        public UserValidator()
+        public RegisterValidator()
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage("Nome é obrigatório.");
             RuleFor(x => x.Surname).NotEmpty().WithMessage("Sobrenome é obrigatório.");
@@ -26,6 +27,15 @@ namespace IMovies.API.Helper.Validations
                 vr = false;
 
             return vr;
+        }
+    }
+
+    public class LoginValidator : AbstractValidator<AuthenticationDto>
+    {
+        public LoginValidator()
+        {
+            RuleFor(x => x.UserName).NotEmpty().WithMessage("Usuário de acesso é obrigatório.");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Senha é obrigatório.");
         }
     }
 }

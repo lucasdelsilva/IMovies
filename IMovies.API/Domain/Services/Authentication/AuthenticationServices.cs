@@ -20,7 +20,7 @@ namespace IMovies.API.Domain.Services.Authentication
         {
             var result = await _signInManager.PasswordSignInAsync(authentication.UserName, authentication.Password, false, false);
             if (!result.Succeeded)
-                throw new ApplicationException("Usuário não autenticado!");
+                return "Usuário e/ou senha incorretos!";
 
             var user = _signInManager.UserManager.Users.FirstOrDefault(user => user.NormalizedUserName.Equals(authentication.UserName.ToUpper()));
 

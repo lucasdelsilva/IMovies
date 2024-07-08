@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using IMovies.API.Domain.Services.Interfaces;
 using IMovies.API.DTOs.Movie;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IMovies.API.Controllers
@@ -17,6 +18,7 @@ namespace IMovies.API.Controllers
             _validator = validator;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -28,7 +30,7 @@ namespace IMovies.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(string id)
         {
             var result = await _movieServices.GetAsync(id);
             if (result is not null)
@@ -37,6 +39,7 @@ namespace IMovies.API.Controllers
             return NotFound();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AdddMovie([FromBody] CreateOrUpdateMovieDto movieDto)
         {
@@ -53,8 +56,9 @@ namespace IMovies.API.Controllers
             return BadRequest();
         }
 
+        [Authorize]
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] CreateOrUpdateMovieDto moviePutDto)
+        public async Task<IActionResult> Put(string id, [FromBody] CreateOrUpdateMovieDto moviePutDto)
         {
             var result = await _movieServices.PutAsync(id, moviePutDto);
             if (result)
@@ -63,8 +67,9 @@ namespace IMovies.API.Controllers
             return NotFound();
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
             var result = await _movieServices.RemoveAsync(id);
             if (result)
