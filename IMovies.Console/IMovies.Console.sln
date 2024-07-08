@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMovies.Console", "IMovies.Console\IMovies.Console.csproj", "{01DD44BB-393A-4AF9-AF8B-29D405B839BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMovies.API", "..\IMovies.API\IMovies.API.csproj", "{FAC5A478-288F-4CA2-BAF8-4DC04C352744}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01DD44BB-393A-4AF9-AF8B-29D405B839BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01DD44BB-393A-4AF9-AF8B-29D405B839BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01DD44BB-393A-4AF9-AF8B-29D405B839BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01DD44BB-393A-4AF9-AF8B-29D405B839BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC5A478-288F-4CA2-BAF8-4DC04C352744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC5A478-288F-4CA2-BAF8-4DC04C352744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC5A478-288F-4CA2-BAF8-4DC04C352744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC5A478-288F-4CA2-BAF8-4DC04C352744}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50A34216-9F4E-4FEE-AF4B-CCF3DF8B2119}
+	EndGlobalSection
+EndGlobal
