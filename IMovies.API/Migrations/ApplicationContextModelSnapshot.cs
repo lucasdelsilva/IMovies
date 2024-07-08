@@ -51,7 +51,7 @@ namespace IMovies.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movies");
+                    b.ToTable("Movies", (string)null);
                 });
 
             modelBuilder.Entity("IMovies.API.Domain.Models.User", b =>

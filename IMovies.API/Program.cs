@@ -12,13 +12,13 @@ using IMovies.API.Helper.Validations;
 using IMovies.API.Mappers;
 using IMovies.API.Repositories;
 using IMovies.API.Repositories.Interfaces;
+using IMovies.Console.Context;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 internal class Program
 {
-    [Obsolete]
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
@@ -87,7 +87,6 @@ internal class Program
         builder.Services.AddScoped<IUserRepository, UserRepository>();
     }
 
-    [Obsolete]
     private static void ConfigurationApplicationServices(WebApplicationBuilder builder)
     {
         builder.Services.AddScoped<IValidator<CreateOrUpdateMovieDto>, MovieValidator>();
@@ -96,6 +95,9 @@ internal class Program
 
         builder.Services.AddDbContext<ApplicationContext>(options =>
                        options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionApplication")));
+
+        builder.Services.AddDbContext<ConsoleApplicationContext>(options =>
+                       options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionApplication"), b => b.MigrationsAssembly("IMovies.API")));
 
         builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
         builder.Services.RegisterMaps();

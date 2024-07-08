@@ -22,4 +22,8 @@
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.2" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\IMovies.Console\IMovies.Console\IMovies.Console.csproj" />
+	</ItemGroup>
+
 </Project>
